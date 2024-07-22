@@ -1,49 +1,33 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+import BankList from './components/BankList.vue'
+import Checkbox from './components/Checkbox.vue'
+import Result from './components/Result.vue'
+import TextInput from './components/TextInput.vue'
 </script>
 
 <template>
-  <header>
-    <h1 class="text-3xl font-bold underline text-rose-800">Hello world!</h1>
+  <div>
+    <header>
+      <div class="bg-rose-800 h-60 w-full">
+        <div class="flex flex-col justify-center items-center text-white pt-14">
+          <h1 class="text-bold">ฝากเงินที่ไหนดี ?</h1>
+          <h4>version clone..</h4>
+        </div>
+      </div>
+    </header>
 
-    <!-- <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+    <main class="container mx-auto relative top-[-70px] center">
+      <div class="border-2 p-4 rounded-lg bg-white">
+        <div v-show="false">
+          <TextInput />
+          <Checkbox />
+          <button class="w-full bg-rose-800 p-2 rounded-md text-white mt-2">คำนวณ</button>
+        </div>
+        <Result />
+      </div>
 
-    <div class="wrapper">
-      <HelloWorld msg="You did itx" />
-    </div> -->
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+      <BankList />
+    </main>
+    <footer class="bg-rose-800 h-24 w-full absolute bottom-0"></footer>
+  </div>
 </template>
-
-<style scoped>
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
-</style>
