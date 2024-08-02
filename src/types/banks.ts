@@ -7,3 +7,9 @@ export type Bank = {
   interest: number
   totalInterest: number
 }
+
+export type Banks = {
+  name: string
+  saving: number
+  totalInterest: string
+}

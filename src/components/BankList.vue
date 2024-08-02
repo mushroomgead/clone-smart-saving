@@ -1,12 +1,22 @@
 <script setup lang="ts">
 import BankItem from './BankItem.vue'
+defineProps<{
+  name: string
+  logo: string
+  interest: number
+  bank: string
+  totalInterest: number
+  saving: number
+}>()
 </script>
 
 <template>
-  <div class="mt-4">
-    <h2>ฝากที่ไหนบ้าง</h2>
-    <BankItem />
-    <BankItem />
-    <BankItem />
-  </div>
+  <BankItem
+    :name="name"
+    :logo="logo"
+    :interest="interest"
+    :bank="bank"
+    :totalInterest="totalInterest"
+    :saving="saving"
+  />
 </template>
