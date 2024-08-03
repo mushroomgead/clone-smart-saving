@@ -8,26 +8,24 @@ on:
     branches: ['main']
 
 env:
-  TAG_NAME: V1.0.0
+  TAG_NAME: ${{github.ref_name}}
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: debug tag name
-        run: echo ${{github.ref_name}}
-      # - name: Step1 - Checkout to main branch
-      #   uses: actions/checkout@v4
+      - name: Step1 - Checkout to TAG $TAG_NAME
+        uses: actions/checkout@v4
 
-      # - name: Step2 - Login to DockerHub
-      #   uses: docker/login-action@v3
-      #   with:
-      #     username: ${{ secrets.DOCKERHUB_USER }}
-      #     password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Step2 - Login to DockerHub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USER }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      # - name: Step3 - Build the Docker image
-      #   run: docker build . --file Dockerfile --tag mushroomgead/clone-smart-saving:$TAG_NAME
+      - name: Step3 - Build the Docker image
+        run: docker build . --file Dockerfile --tag mushroomgead/clone-smart-saving:$TAG_NAME
 
-      # - name: Step4 - Push the Docker image
-      #   run: docker push mushroomgead/clone-smart-saving:$TAG_NAME
+      - name: Step4 - Push the Docker image
+        run: docker push mushroomgead/clone-smart-saving:$TAG_NAME
