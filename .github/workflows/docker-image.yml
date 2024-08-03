@@ -2,23 +2,29 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ['main']
   pull_request:
-    branches: [ "main" ]
+    branches: ['main']
 
 env:
   TAG_NAME: V1.0.0
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag mushroomgead/clone-smart-saving:$TAG_NAME
+      - name: Step1 - Checkout to main branch
+        uses: actions/checkout@v4
 
-    - name: Push the Docker image
-      run: docker push mushroomgead/clone-smart-saving:$TAG_NAME
+      - name: Step2 - Login to DockerHub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USER }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Step3 - Build the Docker image
+        run: docker build . --file Dockerfile --tag mushroomgead/clone-smart-saving:$TAG_NAME
+
+      - name: Step4 - Push the Docker image
+        run: docker push mushroomgead/clone-smart-saving:$TAG_NAME
